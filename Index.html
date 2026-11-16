@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap 4.6.2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Don Maxi - Abarrotes Online</title>
+    <!-- Conectamos nuestra hoja de estilos propia -->
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <!-- ================= HEADER PRINCIPAL ================= -->
+    <header class="header-principal">
+        
+        <!-- 1. FRANJA SUPERIOR (Logo, Buscador, Usuario y Carrito) -->
+        <div class="header-superior">
+            <div class="contenedor-header">
+                
+                <!-- Caja del Logo -->
+                <a href="#" class="logo-link">
+                    <img src="img/Logo.jpg" alt="Logo Don Maxi" class="logo-img">
+                </a>
+
+                <!-- Barra de Búsqueda -->
+                <form class="buscador-form">
+                    <input type="text" placeholder="¿Qué estás buscando hoy?" class="buscador-input">
+                    <button type="submit" class="buscador-boton">Buscar</button>
+                </form>
+
+                <!-- Acciones de Usuario y Carrito -->
+                <div class="acciones-usuario">
+                    <a href="#" class="accion-item">
+                        <span class="icono">👤</span>
+                        <div class="texto-accion">
+                            <small>Hola, inicia sesión</small>
+                            <strong>Mi Cuenta</strong>
+                        </div>
+                    </a>
+
+                    <div class="separador"></div>
+
+                    <a href="#" class="accion-carrito">
+                        <span class="icono">🛒</span>
+                        <span class="contador" id="contador-carrito">0</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 2. FRANJA INFERIOR (Menú de categorías con despliegue) -->
+        <nav class="menu-navegacion">
+            <ul class="menu-lista">
+                <li class="menu-item con-submenu">
+                    <a href="#">☰ CATEGORÍAS ▾</a>
+                    <ul class="submenu">
+                        <li><a href="#">Abarrotes y Menestras</a></li>
+                        <li><a href="#">Aceites y Condimentos</a></li>
+                        <li><a href="#">Lácteos y Huevos</a></li>
+                        <li><a href="#">Bebidas y Jugos</a></li>
+                        <li><a href="#">Limpieza del Hogar</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item"><a href="#">LO MÁS VENDIDO ⭐</a></li>
+                <li class="menu-item"><a href="#">PROMOCIONES</a></li>
+                <li class="menu-item"><a href="#">NUEVOS</a></li>
+                <li class="menu-item"><a href="#" class="destacado-oferta">OFERTAS DE HOY</a></li>
+            </ul>
+        </nav>
+
+    </header>
+    <!-- ================= FIN HEADER ================= -->
+
+
+    <!-- ================= CONTENEDOR PRINCIPAL (Layout de 2 columnas) ================= -->
+    <div class="contenedor-principal">
+        
+        <!-- BARRA LATERAL IZQUIERDA -->
+        <aside class="barra-lateral">
+            <h3 class="sidebar-titulo">Categorías</h3>
+            <ul class="sidebar-lista">
+                <li><a href="#">📦 Abarrotes y Menestras</a></li>
+                <li><a href="#">🧃 Bebidas y Refrescos</a></li>
+                <li><a href="#">🥛 Lácteos y Huevos</a></li>
+                <li><a href="#">🧼 Limpieza del Hogar</a></li>
+                <li><a href="#">🍬 Golosinas y Snacks</a></li>
+            </ul>
+
+            <h3 class="sidebar-titulo">Marcas Destacadas</h3>
+            <ul class="sidebar-lista">
+                <li><a href="#">San Jorge</a></li>
+                <li><a href="#">Nestlé</a></li>
+                <li><a href="#">Costeño</a></li>
+                <li><a href="#">Primor</a></li>
+                <li><a href="#">Don Maxi Casa</a></li>
+            </ul>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL (Derecha: 10 Productos ordenados en formato 3x3) -->
+        <main class="contenido-principal">
+            
+            <div class="seccion-catalogo">
+                <h2 class="titulo-seccion mb-4">Catálogo de Productos</h2>
+                
+                <!-- Grilla exacta de 3 Columnas (3x3 y el décimo producto baja abajo) -->
+                <div class="grilla-productos">
+                    
+                    <!-- Producto 1 -->
+                    <div class="card-producto">
+                        <span class="badge-descuento">-37%</span>
+                        <img src="img/Ajinomen.PNG" class="producto-img" alt="Sopa Ajinomen">
+                        <span class="producto-marca">Ajinomen</span>
+                        <h4 class="producto-nombre">Sopa Instantánea AJINOMEN Sabor Carne Bolsa 80gr x 6u</h4>
+                        <div class="contenedor-precios">
+                            <span class="precio-anterior">S/ 15.61</span>
+                            <span class="precio-actual">S/ 9.80</span>
+                        </div>
+                        <div class="control-cantidad">
+                            <button class="btn-menos">-</button>
+                            <span class="cantidad-valor">1</span>
+                            <button class="btn-mas">+</button>
+                        </div>
+                        <button class="btn-agregar">AGREGAR AL CARRITO</button>
+                    </div>
+
+                    <!-- Producto 2 -->
+                    <div class="card-producto">
+                        <span class="badge-descuento">-20%</span>
+                        <img src="img/Primor.PNG" class="producto-img" alt="Aceite Primor">
+                        <span class="producto-marca">Primor</span>
+                        <h4 class="producto-nombre">Aceite Vegetal Primor Botella 1L</h4>
+                        <div class="contenedor-precios">
+                            <span class="precio-anterior">S/ 12.50</span>
+                            <span class="precio-actual">S/ 9.80</span>
+                        </div>
+                        <div class="control-cantidad">
+                            <button class="btn-menos">-</button>
+                            <span class="cantidad-valor">1</span>
+                            <button class="btn-mas">+</button>
+                        </div>
+                        <button class="btn-agregar">AGREGAR AL CARRITO</button>
+                    </div>
+
+                    <!-- Producto 3 -->
+                    <div class="card-producto">
+                        <img src="img/Gloria.PNG" class="producto-img" alt="Leche Gloria">
+                        <span class="producto-marca">Gloria</span>
+                        <h4 class="producto-nombre">Leche Evaporada Gloria Azul Lata 400g</h4>
+                        <div class="contenedor-precios">
+                            <span class="precio-actual">S/ 4.50</span>
+                        </div>
+                        <div class="control-cantidad">
+                            <button class="btn-menos">-</button>
+                            <span class="cantidad-valor">1</span>
+                            <button class="btn-mas">+</button>
+                        </div>
+                        <button class="btn-agregar">AGREGAR AL CARRITO</button>
+                    </div>
+
+                    <!-- Producto 4 -->
+                    <div class="card-producto">
+                        <span class="badge-descuento">-15%</span>
+                        <img src="img/InkaCola.PNG" class="producto-img" alt="Inka Kola">
+                        <span class="producto-marca">Inka Kola</span>
+                        <h4 class="producto-nombre">Gaseosa Inka Kola Botella 3 Litros</h4>
+                        <div class="contenedor-precios">
+                            <span class="precio-anterior">S/ 12.00</span>
+                            <span class="precio-actual">S/ 10.50</span>
+                        </div>
+                        <div class="control-cantidad">
+                            <button class="btn-menos">-</button>
+                            <span class="cantidad-valor">1</span>
+                            <button class="btn-mas">+</button>
+                        </div>
+                        <button class="btn-agregar">AGREGAR AL CARRITO</button>
+                    </div>
+
+                    <!-- Producto 5 -->
+                    <div class="card-producto">
+                        <img src="img/Faraon.PNG" class="producto-img" alt="Arroz Faraón">
+                        <span class="producto-marca">Faraón</span>
+                        <h4 class="producto-nombre">Arroz Extra Faraón Saco 5kg</h4>
+                        <div class="contenedor-precios">
+                            <span class="precio-actual">S/ 22.50</span>
+                        </div>
+                        <div class="control-cantidad">
+                            <button class="btn-menos">-</button>
+                            <span class="cantidad-valor">1</span>
+                            <button class="btn-mas">+</button>
+                        </div>
+                        <button class="btn-agregar">AGREGAR AL CARRITO</button>
+                    </div>
+
+                    <!-- Producto 6 -->
+                    <div class="card-producto">
+                        <span class="badge-descuento">-10%</span>
+                        <img src="img/Atun.PNG" class="producto-img" alt="Atún Fanny">
+                        <span class="producto-marca">Fanny</span>
+                        <h4 class="producto-nombre">Atún Fanny Lomo en Aceite Lata 170g</h4>
+                        <div class="contenedor-precios">
+                            <span class="precio-anterior">S/ 5.80</span>
+                            <span class="precio-actual">S/ 5.20</span>
+                        </div>
+                        <div class="control-cantidad">
+                            <button class="btn-menos">-</button>
+                            <span class="cantidad-valor">1</span>
+                            <button class="btn-mas">+</button>
+                        </div>
+                        <button class="btn-agregar">AGREGAR AL CARRITO</button>
+                    </div>
+
+                    <!-- Producto 7 -->
+                    <div class="card-producto">
+                        <img src="img/Bolivar.PNG" class="producto-img" alt="Detergente Bolívar">
+                        <span class="producto-marca">Bolívar</span>
+                        <h4 class="producto-nombre">Detergente en Polvo Bolívar 2.6kg</h4>
+                        <div class="contenedor-precios">
+                            <span class="precio-actual">S/ 24.50</span>
+                        </div>
+                        <div class="control-cantidad">
+                            <button class="btn-menos">-</button>
+                            <span class="cantidad-valor">1</span>
+                            <button class="btn-mas">+</button>
+                        </div>
+                        <button class="btn-agregar">AGREGAR AL CARRITO</button>
+                    </div>
+
+                    <!-- Producto 8 -->
+                    <div class="card-producto">
+                        <img src="img/DonVictorio.PNG" class="producto-img" alt="Fideos Don Vittorio">
+                        <span class="producto-marca">Don Vittorio</span>
+                        <h4 class="producto-nombre">Fideos Spaguetti Don Vittorio 500g</h4>
+                        <div class="contenedor-precios">
+                            <span class="precio-actual">S/ 3.40</span>
+                        </div>
+                        <div class="control-cantidad">
+                            <button class="btn-menos">-</button>
+                            <span class="cantidad-valor">1</span>
+                            <button class="btn-mas">+</button>
+                        </div>
+                        <button class="btn-agregar">AGREGAR AL CARRITO</button>
+                    </div>
+
+                    <!-- Producto 9 -->
+                    <div class="card-producto">
+                        <img src="img/Quaker.PNG" class="producto-img" alt="Avena Quaker">
+                        <span class="producto-marca">Quaker</span>
+                        <h4 class="producto-nombre">Avena Tradicional Quaker Bolsa 1kg</h4>
+                        <div class="contenedor-precios">
+                            <span class="precio-actual">S/ 7.80</span>
+                        </div>
+                        <div class="control-cantidad">
+                            <button class="btn-menos">-</button>
+                            <span class="cantidad-valor">1</span>
+                            <button class="btn-mas">+</button>
+                        </div>
+                        <button class="btn-agregar">AGREGAR AL CARRITO</button>
+                    </div>
+
+                    <!-- Producto 10 (Baja automáticamente a la cuarta fila al completar las 3 columnas) -->
+                    <div class="card-producto">
+                        <span class="badge-descuento">-25%</span>
+                        <img src="img/Paracas.PNG" class="producto-img" alt="Papel Higiénico">
+                        <span class="producto-marca">Paracas</span>
+                        <h4 class="producto-nombre">Papel Higiénico Paracas Doble Hoja x 12u</h4>
+                        <div class="contenedor-precios">
+                            <span class="precio-anterior">S/ 22.50</span>
+                            <span class="precio-actual">S/ 16.90</span>
+                        </div>
+                        <div class="control-cantidad">
+                            <button class="btn-menos">-</button>
+                            <span class="cantidad-valor">1</span>
+                            <button class="btn-mas">+</button>
+                        </div>
+                        <button class="btn-agregar">AGREGAR AL CARRITO</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+    <!-- ================= FIN CONTENEDOR PRINCIPAL ================= -->
+
+    <!-- Scripts Bootstrap 4 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+</body>
+<!-- ================= FOOTER INSTITUCIONAL ================= -->
+    <footer class="footer-principal">
+        <div class="footer-contenedor">
+            
+            <!-- Columna 1: Atención al Cliente -->
+            <div class="footer-columna">
+                <h3>ATENCIÓN AL CLIENTE</h3>
+                <ul>
+                    <li><a href="#">Ayuda y Preguntas Frecuentes</a></li>
+                    <li><a href="#">Contacto Directo</a></li>
+                    <li><a href="#">Cambios y Devoluciones</a></li>
+                    <li><a href="#">Seguimiento de Pedidos</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 2: Nosotros / Enlaces -->
+            <div class="footer-columna">
+                <h3>NOSOTROS</h3>
+                <ul>
+                    <li><a href="#">Nuestra Historia</a></li>
+                    <li><a href="#">Blog de Recetas y Tips</a></li>
+                    <li><a href="#">Trabaja con Nosotros</a></li>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: Síguenos y Redes -->
+            <div class="footer-columna">
+                <h3>SÍGUENOS</h3>
+                <p class="footer-texto">Entérate de nuestras ofertas exclusivas y campañas en Santa Anita.</p>
+                <div class="redes-sociales">
+                    <a href="#" class="red-link" title="Facebook">📘</a>
+                    <a href="#" class="red-link" title="Instagram">📷</a>
+                    <a href="#" class="red-link" title="TikTok">🎵</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Franja inferior de Copyright -->
+        <div class="footer-bottom">
+            <p>DON MAXI © 2026. Todos los derechos reservados. Santa Anita, Lima. Hecho con ❤️ para ti.</p>
+        </div>
+    </footer>
+    <!-- ================= FIN FOOTER ================= -->
+</html>

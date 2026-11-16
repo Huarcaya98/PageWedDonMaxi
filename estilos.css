@@ -1,0 +1,559 @@
+/* 1. RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 2. VARIABLES DE COLOR */
+:root {
+    --color-principal: #1446A0;
+    --color-secundario: #0D3275;
+    --color-acento: #F5B700;
+    --color-blanco: #FFFFFF;
+    --color-texto: #222222;
+}
+
+body {
+    background-color: #F4F6F9;
+}
+
+/* ================= ESTILOS DEL HEADER ================= */
+.header-principal {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.header-superior {
+    background-color: var(--color-principal);
+    padding: 15px 30px;
+}
+
+.contenedor-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo-link {
+    background-color: var(--color-blanco);
+    padding: 4px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 90px;
+    width: 130px;
+    display: block;
+    object-fit: contain;
+}
+
+.buscador-form {
+    flex: 1;
+    max-width: 600px;
+    display: flex;
+    background-color: var(--color-blanco);
+    border-radius: 50px;
+    overflow: hidden;
+    height: 44px;
+}
+
+.buscador-input {
+    flex: 1;
+    border: none;
+    padding: 0 20px;
+    font-size: 15px;
+    outline: none;
+}
+
+.buscador-boton {
+    background-color: var(--color-acento);
+    color: var(--color-texto);
+    border: none;
+    padding: 0 25px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.buscador-boton:hover {
+    background-color: #DFA600;
+}
+
+.acciones-usuario {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.accion-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-blanco);
+    text-decoration: none;
+}
+
+.accion-item .icono {
+    font-size: 24px;
+}
+
+.texto-accion {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.texto-accion small {
+    font-size: 11px;
+    opacity: 0.85;
+}
+
+.texto-accion strong {
+    font-size: 14px;
+}
+
+.separador {
+    width: 1px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.accion-carrito {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 22px;
+    transition: background-color 0.2s;
+}
+
+.contador {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: var(--color-acento);
+    color: var(--color-texto);
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 7px;
+    border-radius: 50%;
+}
+
+/* Menú Inferior */
+.menu-navegacion {
+    background-color: var(--color-secundario);
+    padding: 0 30px;
+}
+
+.menu-lista {
+    max-width: 1200px;
+    margin: 0 auto;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+}
+
+.menu-item {
+    position: relative;
+}
+
+.menu-item > a {
+    display: block;
+    color: var(--color-blanco);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 12px 5px;
+    transition: color 0.2s;
+}
+
+.menu-item > a:hover {
+    color: var(--color-acento);
+}
+
+.destacado-oferta {
+    color: var(--color-acento) !important;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-blanco);
+    min-width: 220px;
+    list-style: none;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    border-top: 3px solid var(--color-acento);
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+}
+
+.con-submenu:hover .submenu {
+    display: block;
+}
+
+.submenu li a {
+    display: block;
+    padding: 10px 15px;
+    color: var(--color-texto);
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.submenu li a:hover {
+    background-color: #F0F4FF;
+    color: var(--color-principal);
+    font-weight: bold;
+}
+
+/* ================= LAYOUT DE DOS COLUMNAS ================= */
+.contenedor-principal {
+    max-width: 1200px;
+    margin: 25px auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 25px;
+}
+
+/* Barra Lateral Izquierda */
+.barra-lateral {
+    width: 260px;
+    flex-shrink: 0;
+    background-color: var(--color-blanco);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+}
+
+.sidebar-titulo {
+    font-size: 16px;
+    color: var(--color-principal);
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--color-acento);
+    font-weight: bold;
+}
+
+.sidebar-titulo:not(:first-child) {
+    margin-top: 25px;
+}
+
+.sidebar-lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar-lista li a {
+    display: block;
+    padding: 10px 12px;
+    color: var(--color-texto);
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    background-color: #F8F9FA;
+}
+
+.sidebar-lista li a:hover {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    padding-left: 16px;
+}
+
+/* Contenido Principal (Derecha) */
+.contenido-principal {
+    flex: 1;
+}
+
+.seccion-catalogo {
+    background-color: var(--color-blanco);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.titulo-seccion {
+    color: var(--color-principal);
+    font-size: 20px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #EEEEEE;
+    padding-bottom: 8px;
+}
+
+/* ================= GRILLA 3 COLUMNAS (3x3 y el décimo baja) ================= */
+.grilla-productos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* 1. Estructura de la tarjeta para alinear todo perfectamente */
+.card-producto {
+    background-color: var(--color-blanco);
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    padding: 15px;
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-producto:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.badge-descuento {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: #333333;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 7px;
+    border-radius: 4px;
+    z-index: 2;
+}
+
+.producto-img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 12px;
+}
+
+.producto-marca {
+    font-size: 12px;
+    color: #777777;
+    margin-bottom: 4px;
+}
+
+/* 2. Altura fija para el título para que todas las tarjetas midan lo mismo */
+.producto-nombre {
+    font-size: 14px;
+    color: var(--color-texto);
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 12px;
+    height: 55px; 
+    overflow: hidden;
+}
+
+/* 3. Contenedor de precios con altura fija para compensar si no hay descuento */
+.contenedor-precios {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 48px; /* Altura reservada tanto si hay precio tachado como si no */
+    margin-bottom: 12px;
+}
+
+.precio-anterior {
+    font-size: 13px;
+    color: #999999;
+    text-decoration: line-through;
+    height: 18px; /* Espacio reservado para el texto tachado */
+}
+
+.precio-actual {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--color-principal);
+}
+
+/* 4. Empuja los controles y el botón al fondo exacto de la tarjeta */
+.control-cantidad {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    padding: 4px 10px;
+    margin-top: auto; /* Truco de Flexbox: empuja este bloque y el botón hacia abajo */
+    margin-bottom: 10px;
+    background-color: #FFFFFF;
+}
+
+.btn-menos, .btn-mas {
+    background: none;
+    border: none;
+    color: #D32F2F;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 8px;
+}
+
+.btn-menos:hover, .btn-mas:hover {
+    opacity: 0.8;
+}
+
+.cantidad-valor {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--color-texto);
+}
+
+/* Botón Agregar al Carrito */
+.btn-agregar {
+    background-color: #E50914;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.2s;
+    width: 100%;
+}
+
+.btn-agregar:hover {
+    background-color: #B20710;
+}
+
+
+
+
+
+
+/* ================= RESPONSIVE PARA CELULARES ================= */
+@media (max-width: 768px) {
+    .contenedor-principal {
+        flex-direction: column;
+    }
+    
+    .barra-lateral {
+        width: 100%;
+    }
+
+    .grilla-productos {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+/* ================= ESTILOS DEL FOOTER ================= */
+.footer-principal {
+    background-color: var(--color-secundario); /* Azul oscuro corporativo (#0D3275) */
+    color: var(--color-blanco);
+    padding-top: 40px;
+    margin-top: 50px;
+    border-top: 4px solid var(--color-acento); /* Detalle en Amarillo Mostaza */
+}
+
+.footer-contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 30px 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas organizadas */
+    gap: 40px;
+}
+
+.footer-columna h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--color-acento); /* Títulos en amarillo mostaza */
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.footer-columna ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-columna ul li {
+    margin-bottom: 10px;
+}
+
+.footer-columna ul li a {
+    color: #E0E0E0;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s, padding-left 0.2s;
+}
+
+.footer-columna ul li a:hover {
+    color: var(--color-acento);
+    padding-left: 5px; /* Pequeño efecto visual al pasar el mouse */
+}
+
+.footer-texto {
+    font-size: 13px;
+    color: #D0D7DE;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+/* Iconos de Redes Sociales */
+.redes-sociales {
+    display: flex;
+    gap: 15px;
+}
+
+.red-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    font-size: 18px;
+    text-decoration: none;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.red-link:hover {
+    background-color: var(--color-acento);
+    transform: translateY(-3px);
+}
+
+/* Franja inferior de Copyright */
+.footer-bottom {
+    background-color: #092454; /* Tono aún más oscuro para separar la base */
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 12px;
+    color: #B0C4DE;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ================= RESPONSIVE PARA CELULARES (FOOTER) ================= */
+@media (max-width: 768px) {
+    .footer-contenedor {
+        grid-template-columns: 1fr; /* En celular las columnas bajan una por una */
+        gap: 25px;
+        text-align: center;
+    }
+
+    .redes-sociales {
+        justify-content: center;
+    }
+}
