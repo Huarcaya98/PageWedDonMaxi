@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <title>Mi Carrito - Don Maxi</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        /* Estilos específicos para el Carrito y la Boleta Virtual */
+        .carrito-contenedor {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+        }
+
+        .caja-blanca {
+            background: #FFFFFF;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .item-carrito {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #EEEEEE;
+            padding: 15px 0;
+            gap: 15px;
+        }
+
+        .item-carrito img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-info h5 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--color-texto);
+        }
+
+        .item-precio {
+            color: var(--color-principal);
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .btn-eliminar {
+            background-color: #FFEBEE;
+            color: #D32F2F;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-eliminar:hover {
+            background-color: #FFCDD2;
+        }
+
+        .resumen-fila {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .resumen-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--color-principal);
+            border-top: 2px solid #EEEEEE;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .btn-comprar {
+            width: 100%;
+            background-color: #2E7D32;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 15px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        .btn-comprar:hover {
+            background-color: #1B5E20;
+        }
+
+        /* Estilos de la Boleta Virtual */
+        .boleta-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .boleta-papel {
+            background: #FFFFFF;
+            width: 100%;
+            max-width: 420px;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .boleta-header {
+            text-align: center;
+            border-bottom: 2px dashed #333;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .boleta-tabla {
+            width: 100%;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .boleta-tabla th {
+            border-bottom: 1px dashed #333;
+            padding-bottom: 5px;
+        }
+
+        .boleta-tabla td {
+            padding: 5px 0;
+        }
+
+        .boleta-total {
+            border-top: 2px dashed #333;
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .carrito-contenedor {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER SIMPLIFICADO -->
+    <header class="header-principal">
+        <div class="header-superior">
+            <div class="contenedor-header">
+                <a href="index.html" class="logo-link">
+                    <img src="img/Logo.jpg" alt="Logo Don Maxi" class="logo-img">
+                </a>
+                <h2 style="color: white; margin: 0; font-size: 20px;">🛒 Tu Carrito de Compras</h2>
+                <a href="index.html" class="btn btn-warning font-weight-bold">← Seguir Comprando</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO DEL CARRITO -->
+    <div class="carrito-contenedor">
+        
+        <!-- Lista de Productos -->
+        <div class="caja-blanca">
+            <h3 class="titulo-seccion">Productos Seleccionados</h3>
+            <div id="lista-carrito">
+                <!-- Se llena dinámicamente con JavaScript -->
+            </div>
+        </div>
+
+        <!-- Resumen de Compra -->
+        <div class="caja-blanca" style="height: fit-content;">
+            <h3 class="titulo-seccion">Resumen del Pedido</h3>
+            
+            <div class="form-group">
+                <label for="cliente-nombre" style="font-size: 13px; font-weight: bold;">Nombre del Cliente:</label>
+                <input type="text" id="cliente-nombre" class="form-control form-control-sm" placeholder="Ej. Juan Pérez">
+            </div>
+
+            <div class="resumen-fila">
+                <span>Productos (<span id="resumen-cantidad">0</span>):</span>
+                <span id="resumen-subtotal">S/ 0.00</span>
+            </div>
+            <div class="resumen-fila">
+                <span>Envío (Santa Anita):</span>
+                <span style="color: #2E7D32; font-weight: bold;">GRATIS</span>
+            </div>
+            <div class="resumen-total">
+                <span>TOTAL A PAGAR:</span>
+                <span id="resumen-total">S/ 0.00</span>
+            </div>
+
+            <button class="btn-comprar" onclick="generarBoleta()">GENERAR COMPRA Y BOLETA</button>
+            <button class="btn btn-outline-danger btn-sm btn-block mt-2" onclick="vaciarCarrito()">Vaciar Carrito</button>
+        </div>
+
+    </div>
+
+    <!-- MODAL BOLETA VIRTUAL -->
+    <div class="boleta-modal" id="modal-boleta">
+        <div class="boleta-papel">
+            <div class="boleta-header">
+                <h4 style="font-weight: bold; margin: 0;">ABARROTES DON MAXI</h4>
+                <small>RUC: 20601234567</small><br>
+                <small>Santa Anita, Lima - Perú</small><br>
+                <strong style="display:block; margin-top:8px;">BOLETA DE VENTA ELECTRÓNICA</strong>
+                <small id="boleta-numero">N° B001-00001</small>
+            </div>
+
+            <div style="font-size: 12px; margin-bottom: 10px;">
+                <div><strong>Fecha:</strong> <span id="boleta-fecha"></span></div>
+                <div><strong>Cliente:</strong> <span id="boleta-cliente"></span></div>
+            </div>
+
+            <table class="boleta-tabla">
+                <thead>
+                    <tr>
+                        <th>Cant</th>
+                        <th>Descripción</th>
+                        <th style="text-align: right;">Importe</th>
+                    </tr>
+                </thead>
+                <tbody id="boleta-items">
+                    <!-- Productos de la boleta -->
+                </tbody>
+            </table>
+
+            <div class="boleta-total">
+                <span>TOTAL:</span>
+                <span id="boleta-total-final">S/ 0.00</span>
+            </div>
+
+            <div class="text-center mt-4 d-print-none">
+                <button class="btn btn-primary btn-sm" onclick="window.print()">🖨️ Imprimir Boleta</button>
+                <button class="btn btn-success btn-sm" onclick="finalizarYVolver()">✅ Finalizar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', renderizarCarrito);
+
+        function obtenerCarrito() {
+            return JSON.parse(localStorage.getItem('carritoDonMaxi')) || [];
+        }
+
+        function guardarCarrito(carrito) {
+            localStorage.setItem('carritoDonMaxi', JSON.stringify(carrito));
+            renderizarCarrito();
+        }
+
+        function renderizarCarrito() {
+            const carrito = obtenerCarrito();
+            const contenedor = document.getElementById('lista-carrito');
+            contenedor.innerHTML = '';
+
+            if (carrito.length === 0) {
+                contenedor.innerHTML = '<p class="text-muted text-center py-4">Tu carrito está vacío. ¡Agrega productos desde la tienda!</p>';
+                actualizarResumen(0, 0);
+                return;
+            }
+
+            let totalCantidad = 0;
+            let totalPrecio = 0;
+
+            carrito.forEach((item, index) => {
+                const subtotal = item.precio * item.cantidad;
+                totalCantidad += item.cantidad;
+                totalPrecio += subtotal;
+
+                contenedor.innerHTML += `
+                    <div class="item-carrito">
+                        <img src="${item.imagen}" alt="${item.nombre}">
+                        <div class="item-info">
+                            <h5>${item.nombre}</h5>
+                            <span class="item-precio">S/ ${item.precio.toFixed(2)} c/u</span>
+                        </div>
+                        <div class="control-cantidad" style="margin: 0;">
+                            <button class="btn-menos" onclick="cambiarCantidad(${index}, -1)">-</button>
+                            <span class="cantidad-valor">${item.cantidad}</span>
+                            <button class="btn-mas" onclick="cambiarCantidad(${index}, 1)">+</button>
+                        </div>
+                        <div style="min-width: 80px; text-align: right; font-weight: bold;">
+                            S/ ${subtotal.toFixed(2)}
+                        </div>
+                        <button class="btn-eliminar" onclick="eliminarProducto(${index})">🗑️</button>
+                    </div>
+                `;
+            });
+
+            actualizarResumen(totalCantidad, totalPrecio);
+        }
+
+        function cambiarCantidad(index, cambio) {
+            const carrito = obtenerCarrito();
+            carrito[index].cantidad += cambio;
+            if (carrito[index].cantidad <= 0) {
+                carrito.splice(index, 1);
+            }
+            guardarCarrito(carrito);
+        }
+
+        function eliminarProducto(index) {
+            const carrito = obtenerCarrito();
+            carrito.splice(index, 1);
+            guardarCarrito(carrito);
+        }
+
+        function vaciarCarrito() {
+            if (confirm('¿Seguro que deseas vaciar todo el carrito?')) {
+                localStorage.removeItem('carritoDonMaxi');
+                renderizarCarrito();
+            }
+        }
+
+        function actualizarResumen(cantidad, total) {
+            document.getElementById('resumen-cantidad').textContent = cantidad;
+            document.getElementById('resumen-subtotal').textContent = `S/ ${total.toFixed(2)}`;
+            document.getElementById('resumen-total').textContent = `S/ ${total.toFixed(2)}`;
+        }
+
+        function generarBoleta() {
+            const carrito = obtenerCarrito();
+            if (carrito.length === 0) {
+                alert('Tu carrito está vacío. Agrega productos antes de comprar.');
+                return;
+            }
+
+            const nombreCliente = document.getElementById('cliente-nombre').value.trim() || 'Cliente General';
+            const ahora = new Date();
+            const numBoleta = 'B001-' + Math.floor(10000 + Math.random() * 90000);
+
+            document.getElementById('boleta-numero').textContent = `N° ${numBoleta}`;
+            document.getElementById('boleta-fecha').textContent = ahora.toLocaleString('es-PE');
+            document.getElementById('boleta-cliente').textContent = nombreCliente;
+
+            const tbody = document.getElementById('boleta-items');
+            tbody.innerHTML = '';
+            let total = 0;
+
+            carrito.forEach(item => {
+                const importe = item.precio * item.cantidad;
+                total += importe;
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${item.cantidad}</td>
+                        <td>${item.nombre}</td>
+                        <td style="text-align: right;">S/ ${importe.toFixed(2)}</td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById('boleta-total-final').textContent = `S/ ${total.toFixed(2)}`;
+            document.getElementById('modal-boleta').style.display = 'flex';
+        }
+
+        function finalizarYVolver() {
+            localStorage.removeItem('carritoDonMaxi');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

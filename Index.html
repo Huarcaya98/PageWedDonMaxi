@@ -41,7 +41,7 @@
 
                     <div class="separador"></div>
 
-                    <a href="#" class="accion-carrito">
+                    <a href="carrito.html" class="accion-carrito">
                         <span class="icono">🛒</span>
                         <span class="contador" id="contador-carrito">0</span>
                     </a>
@@ -288,6 +288,64 @@
     <!-- Scripts Bootstrap 4 -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+    <script>
+    // Cargar contador al iniciar
+    document.addEventListener('DOMContentLoaded', actualizarContador);
+
+    // Control de botones - y + en las tarjetas
+    document.querySelectorAll('.card-producto').forEach(card => {
+        const btnMenos = card.querySelector('.btn-menos');
+        const btnMas = card.querySelector('.btn-mas');
+        const spanCant = card.querySelector('.cantidad-valor');
+        const btnAgregar = card.querySelector('.btn-agregar');
+
+        btnMas.addEventListener('click', () => {
+            spanCant.textContent = parseInt(spanCant.textContent) + 1;
+        });
+
+        btnMenos.addEventListener('click', () => {
+            let actual = parseInt(spanCant.textContent);
+            if (actual > 1) spanCant.textContent = actual - 1;
+        });
+
+        btnAgregar.addEventListener('click', () => {
+            const nombre = card.querySelector('.producto-nombre').textContent;
+            const precioTexto = card.querySelector('.precio-actual').textContent.replace('S/', '').trim();
+            const precio = parseFloat(precioTexto);
+            const imagen = card.querySelector('.producto-img').getAttribute('src');
+            const cantidad = parseInt(spanCant.textContent);
+
+            agregarAlCarrito({ nombre, precio, imagen, cantidad });
+            spanCant.textContent = '1'; // Reiniciar contador de tarjeta
+        });
+    });
+
+    function agregarAlCarrito(producto) {
+        let carrito = JSON.parse(localStorage.getItem('carritoDonMaxi')) || [];
+        const existe = carrito.find(item => item.nombre === producto.nombre);
+
+        if (existe) {
+            existe.cantidad += producto.cantidad;
+        } else {
+            carrito.push(producto);
+        }
+
+        localStorage.setItem('carritoDonMaxi', JSON.stringify(carrito));
+        actualizarContador();
+        alert(`✅ Agregaste ${producto.cantidad}x ${producto.nombre} al carrito.`);
+    }
+
+    function actualizarContador() {
+        let carrito = JSON.parse(localStorage.getItem('carritoDonMaxi')) || [];
+        const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+        document.getElementById('contador-carrito').textContent = totalItems;
+    }
+</script>
+
+
+
+
 
 </body>
 <!-- ================= FOOTER INSTITUCIONAL ================= -->
